@@ -15,7 +15,11 @@
                 "run",
                 "--unstable",
                 "--inspect-brk",
-                "--allow-all"
+                "--allow-all",
+            ],
+            "args": [
+                "--part1",
+                "partOne/sample.in"
             ],
             "attachSimplePort": 9229
         }
