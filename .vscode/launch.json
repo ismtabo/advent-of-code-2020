@@ -5,12 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Launch Deno Test",
+            "program": "${workspaceFolder}/src/problems/day4/partTwo/test.ts",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "deno",
+            "runtimeArgs": [
+                "run",
+                "--inspect-brk=127.0.0.1:9229",
+                "--allow-all"
+            ],
+            "attachSimplePort": 9229
+        },
+        {
             "name": "Launch Deno",
             "request": "launch",
             "type": "pwa-node",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
+            "program": "./src/cli/main.ts",
             "runtimeExecutable": "deno",
+            "cwd": "${workspaceFolder}",
             "runtimeArgs": [
                 "run",
                 "--unstable",
@@ -18,8 +32,9 @@
                 "--allow-all",
             ],
             "args": [
+                "-d 4",
                 "--part1",
-                "partOne/sample.in"
+                "src/problems/day4/partOne/sample.txt"
             ],
             "attachSimplePort": 9229
         }
