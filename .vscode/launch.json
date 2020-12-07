@@ -32,9 +32,9 @@
                 "--allow-all",
             ],
             "args": [
-                "-d 6",
+                "-d 7",
                 "--part2",
-                "src/problems/day6/sample.txt"
+                "src/problems/day7/sample.txt"
             ],
             "attachSimplePort": 9229
         }
