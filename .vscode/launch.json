@@ -22,7 +22,7 @@
             "name": "Launch Deno",
             "request": "launch",
             "type": "pwa-node",
-            "program": "./src/cli/main.ts",
+            "program": "./src/cli/mod.ts",
             "runtimeExecutable": "deno",
             "cwd": "${workspaceFolder}",
             "runtimeArgs": [

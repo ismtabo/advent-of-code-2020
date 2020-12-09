@@ -1,4 +1,4 @@
-import { generateSeatId } from "../partOne/index.ts";
+import { generateSeatId } from "../partOne/mod.ts";
 
 export function partTwo(instructionsSet: string[]): number | undefined {
   const seats = instructionsSet.map(generateSeatId).map(({ seatId }) => seatId)

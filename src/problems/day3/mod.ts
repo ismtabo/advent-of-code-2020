@@ -1,5 +1,5 @@
-import { partOne } from "./partOne/index.ts";
-import { partTwo } from "./partTwo/index.ts";
+import { partOne } from "./partOne/mod.ts";
+import { partTwo } from "./partTwo/mod.ts";
 
 export function main(text: string, isPart2: boolean) {
   const map = text.split("\n");

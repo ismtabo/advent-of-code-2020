@@ -1,7 +1,8 @@
-import { Passport, validPassports } from "../partOne/index.ts";
+import { Passport, validPassports } from "../partOne/mod.ts";
 
 export function validateField(field: string, value: string): boolean {
   let year, height;
+  // deno-lint-ignore prefer-const
   let unit: string;
   switch (field) {
     case "byr":

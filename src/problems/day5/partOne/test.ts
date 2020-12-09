@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { generateSeatId } from "./index.ts";
+import { generateSeatId } from "./mod.ts";
 
 Deno.test("Day 5 - seat identifier test", () => {
   const cases = [

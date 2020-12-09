@@ -1,7 +1,7 @@
 import { dirname, join } from "https://deno.land/std/path/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.79.0/testing/asserts.ts";
-import { Passport } from "../partOne/index.ts";
-import { partTwo, validateField } from "./index.ts";
+import { Passport } from "../partOne/mod.ts";
+import { partTwo, validateField } from "./mod.ts";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
 

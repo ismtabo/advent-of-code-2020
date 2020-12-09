@@ -1,5 +1,5 @@
-import { partOne } from "./partOne/index.ts";
-import { partTwo } from "./partTwo/index.ts";
+import { partOne } from "./partOne/mod.ts";
+import { partTwo } from "./partTwo/mod.ts";
 
 const RE_OPERATION = /([a-z]+)\s((?:\+|\-)\d+)/;
 

@@ -44,7 +44,7 @@ async function loadModule(day: number) {
     console.error(`Available modules: ${availableModules()}`);
     Deno.exit(1);
   }
-  return await import(`${__dirname}/../problems/day${day}/index.ts`);
+  return await import(`${__dirname}/../problems/day${day}/mod.ts`);
 }
 
 function availableModules(): string[] {

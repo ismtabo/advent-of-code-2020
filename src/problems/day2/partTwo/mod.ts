@@ -1,4 +1,4 @@
-import { Case } from "../partOne/index.ts";
+import { Case } from "../partOne/mod.ts";
 
 export function partTwo(cases: Case[]) {
   return cases.filter(({ rule: { min, max, letter }, password }) => {

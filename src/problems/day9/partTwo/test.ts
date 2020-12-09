@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { partTwo } from "./index.ts";
+import { partTwo } from "./mod.ts";
 
 Deno.test("Day 9 - part 2 - sample input", () => {
   const text = Deno.readTextFileSync("src/problems/day9/sample.txt");

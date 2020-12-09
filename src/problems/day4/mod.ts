@@ -1,5 +1,5 @@
-import { partOne, Passport } from "./partOne/index.ts";
-import { partTwo } from "./partTwo/index.ts";
+import { partOne, Passport } from "./partOne/mod.ts";
+import { partTwo } from "./partTwo/mod.ts";
 
 export function main(text: string, isPart2: boolean) {
   const passports: Passport[] = text

@@ -1,4 +1,4 @@
-import { Operation } from "../models.ts";
+import { Operation } from "../types.d.ts";
 
 export function partTwo(instructions: Operation[]) {
   const jumpIndexes = instructions.map(({ name }, index) =>

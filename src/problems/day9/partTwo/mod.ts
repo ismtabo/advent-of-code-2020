@@ -1,4 +1,4 @@
-import { partOne } from "../partOne/index.ts";
+import { partOne } from "../partOne/mod.ts";
 
 export function partTwo(
   numbers: number[],

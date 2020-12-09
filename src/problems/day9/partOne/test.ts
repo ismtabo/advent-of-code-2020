@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { isValidNumber, partOne } from "./index.ts";
+import { isValidNumber, partOne } from "./mod.ts";
 
 Deno.test("Day 9 - part 1 - test isValidNumber range 1 to 25", () => {
   const preamble = [...new Array(26).keys()].slice(1); // 1..25

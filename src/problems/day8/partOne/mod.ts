@@ -1,4 +1,4 @@
-import { Operation } from "../models.ts";
+import { Operation } from "../types.d.ts";
 
 export function partOne(instructions: Operation[]) {
   let OPERATION_POINTER = 0;

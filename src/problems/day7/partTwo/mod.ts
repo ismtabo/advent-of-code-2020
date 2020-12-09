@@ -1,4 +1,4 @@
-import { RE_BAG_RULE, SHYNI_GOLD } from "../partOne/index.ts";
+import { RE_BAG_RULE, SHYNI_GOLD } from "../partOne/mod.ts";
 
 interface Bag {
   bag: string;
