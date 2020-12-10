@@ -1,8 +1,8 @@
 import { parse } from "https://deno.land/std/flags/mod.ts";
-import { existsSync, expandGlobSync } from "https://deno.land/std/fs/mod.ts";
+import { existsSync } from "https://deno.land/std/fs/mod.ts";
 import { dirname } from "https://deno.land/std/path/mod.ts";
 
-const __dirname = dirname(import.meta.url);
+const __dirname = dirname(new URL(import.meta.url).pathname);
 
 async function main() {
   const args = parse(
@@ -39,19 +39,18 @@ function printUsage(exitCode: number) {
 }
 
 async function loadModule(day: number) {
-  if (!availableModules().includes(`day${day}`)) {
+  const dayModuleName = `day${day}`;
+  const problems = await import(`${__dirname}/../problems/mod.ts`);
+  if (!(dayModuleName in problems)) {
     console.error(`Error - Day ${day} not found`);
-    console.error(`Available modules: ${availableModules()}`);
+    console.error(
+      `Available days: ${
+        Object.keys(problems).join(", ").replaceAll("day", "")
+      }`,
+    );
     Deno.exit(1);
   }
-  return await import(`${__dirname}/../problems/day${day}/mod.ts`);
-}
-
-function availableModules(): string[] {
-  const problemsDir = new URL(`${__dirname}/../problems`).pathname;
-  return new Array(...expandGlobSync(`${problemsDir}/day*`))
-    .filter((problemPath) => problemPath.isDirectory)
-    .map((problemPath) => problemPath.name);
+  return await problems[dayModuleName];
 }
 
 main();

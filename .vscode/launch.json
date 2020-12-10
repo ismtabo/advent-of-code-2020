@@ -32,11 +32,12 @@
                 "--allow-all",
             ],
             "args": [
-                "-d 8",
+                "-d 10",
                 "--part2",
-                "src/problems/day8/sample.txt"
+                "src/problems/day10/sample.txt"
             ],
-            "attachSimplePort": 9229
+            "attachSimplePort": 9229,
+            "outputCapture": "std"
         }
     ]
 }
