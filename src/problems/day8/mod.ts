@@ -17,3 +17,5 @@ export function main(text: string, isPart2: boolean) {
   }
   return partOne(instructions);
 }
+
+export { partOne, partTwo };

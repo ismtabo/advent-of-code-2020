@@ -8,3 +8,5 @@ export function main(text: string, isPart2: boolean) {
   }
   return partOne(cases);
 }
+
+export { partOne, partTwo };

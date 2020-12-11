@@ -22,3 +22,5 @@ export function main(text: string, isPart2: boolean) {
 
   return partOne(passports);
 }
+
+export { partOne, partTwo };
