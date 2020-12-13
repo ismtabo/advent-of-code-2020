@@ -1,3 +1,4 @@
+// First try using brute force
 export function findMinTimestamp(buses: number[]) {
   const firstBus = buses[0];
   let currentTimestamp = 0;
@@ -11,8 +12,19 @@ export function findMinTimestamp(buses: number[]) {
   return currentTimestamp;
 }
 
+// Second try
 function mod(n: number, m: number): number {
   return ((n % m) + m) % m;
+}
+
+function extended_gcd(a: number, b: number): number[] {
+  if (a % b == 0) {
+    return [0, 1];
+  } else {
+    const temp = extended_gcd(b, a % b);
+    const temp2 = [temp[1], temp[0] - temp[1] * (Math.floor(a / b))];
+    return temp2;
+  }
 }
 
 // NOTE: Reference https://davidwees.com/chineseremaindertheorem/
@@ -57,22 +69,30 @@ export function calculate(buses: number[]): number {
   return x;
 }
 
-function extended_gcd(a: number, b: number): number[] {
-  if (a % b == 0) {
-    return [0, 1];
-  } else {
-    const temp = extended_gcd(b, a % b);
-    const temp2 = [temp[1], temp[0] - temp[1] * (Math.floor(a / b))];
-    return temp2;
-  }
-}
-
-function modBigInt(n: bigint, m: bigint): bigint {
+// Functional solution using BigIntegers to avoid precision problems
+function modBigInt(n: bigint, m: bigint) {
   return ((n % m) + m) % m;
 }
 
+function xgcd(a: bigint, b: bigint) {
+  if (b === 1n) {
+    return 1n;
+  }
+  const oldB = b;
+  let [r, s] = [0n, 1n];
+  while (a > 1) {
+    const q = a / b;
+    ([a, b] = [b, modBigInt(a, b)]);
+    ([r, s] = [s - q * r, r]);
+  }
+  if (s < 0) {
+    s += oldB;
+  }
+  return s;
+}
+
 // NOTE: Reference https://rosettacode.org/wiki/Chinese_remainder_theorem
-export function chineseRemainder(buses: number[]): bigint {
+export function chineseRemainder(buses: number[]) {
   const numbers: bigint[][] = buses.map((bus, i) => [bus, i]).filter(([bus]) =>
     !isNaN(bus)
   ).map((busInfo) => busInfo.map(BigInt));
@@ -96,22 +116,5 @@ export function chineseRemainder(buses: number[]): bigint {
     );
   });
 
-  return x;
-}
-
-function xgcd(a: bigint, b: bigint): bigint {
-  if (b === 1n) {
-    return 1n;
-  }
-  const oldB = b;
-  let [r, s] = [0n, 1n];
-  while (a > 1) {
-    const q = a / b;
-    ([a, b] = [b, modBigInt(a, b)]);
-    ([r, s] = [s - q * r, r]);
-  }
-  if (s < 0) {
-    s += oldB;
-  }
-  return s;
+  return Number(x);
 }

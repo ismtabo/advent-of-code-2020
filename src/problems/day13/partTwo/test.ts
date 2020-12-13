@@ -1,7 +1,7 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 import { calculate, chineseRemainder, findMinTimestamp } from "./utils.ts";
 
-function preprocessInput(input: string): number[] {
+function preprocessInput(input: string) {
   return input.split(",").map((number) => +number.trim());
 }
 
