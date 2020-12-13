@@ -16,7 +16,8 @@ def xgcd(a, b):
     return s
 
 
-numbers = sys.argv[1]
+with open(sys.argv[1]) as file:
+    [_, numbers] = file.readlines()
 numbers = [[int(n), (int(n) - a) % int(n)]
            for a, n in enumerate(numbers.split(',')) if n != 'x']
 N = reduce(lambda x, y: x * y, [n for n, _ in numbers])

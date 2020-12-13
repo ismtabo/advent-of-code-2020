@@ -54,20 +54,27 @@ function extended_gcd(a: number, b: number): number[] {
   }
 }
 
-export function chineseRemainder(buses: number[]): number {
-  const n: number[] = buses.filter((bus) => !isNaN(bus));
-  const a: number[] = buses.map((bus, index) =>
-    isNaN(bus) ? NaN : mod((bus - index), bus)
-  )
-    .filter((bus) => !isNaN(bus));
+function modBigInt(n: bigint, m: bigint): bigint {
+  return ((n % m) + m) % m;
+}
+
+// NOTE: Reference https://rosettacode.org/wiki/Chinese_remainder_theorem
+export function chineseRemainder(buses: number[]): bigint {
+  const numbers: bigint[][] = buses.map((bus, i) => [bus, i]).filter(([bus]) =>
+    !isNaN(bus)
+  ).map((busInfo) => busInfo.map(BigInt));
+  const n: bigint[] = numbers.map(([number]) => number);
+  const a: bigint[] = numbers.map(([bus, index]) =>
+    modBigInt(bus - index, bus)
+  );
   const N = n.reduce((a, b) => a * b);
   const elements = n.map((x, i) => {
-    const ni = Math.floor(N / x);
+    const ni = N / x;
     const si = xgcd(ni, x);
     return a[i] * si * ni;
   });
   let x = elements.reduce((a, b) => a + b);
-  x = mod(x, N);
+  x = modBigInt(x, N);
 
   n.forEach((n, i) => {
     console.assert(
@@ -79,15 +86,15 @@ export function chineseRemainder(buses: number[]): number {
   return x;
 }
 
-function xgcd(a: number, b: number): number {
-  if (b === 1) {
-    return 1;
+function xgcd(a: bigint, b: bigint): bigint {
+  if (b === 1n) {
+    return 1n;
   }
   const oldB = b;
-  let [r, s] = [0, 1];
+  let [r, s] = [0n, 1n];
   while (a > 1) {
-    const q = Math.floor(a / b);
-    ([a, b] = [b, mod(a, b)]);
+    const q = a / b;
+    ([a, b] = [b, modBigInt(a, b)]);
     ([r, s] = [s - q * r, r]);
   }
   if (s < 0) {
