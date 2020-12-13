@@ -1,6 +1,7 @@
 import { dirname, join } from "https://deno.land/std/path/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.79.0/testing/asserts.ts";
-import { Passport } from "../partOne/mod.ts";
+import { preprocess } from "../mod.ts";
+import { Passport } from "../types.d.ts";
 import { partTwo, validateField } from "./mod.ts";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
@@ -35,19 +36,7 @@ Deno.test("validatorFieldTest", () => {
 
 Deno.test("Day 4 - All invalid", () => {
   const text = Deno.readTextFileSync(join(__dirname, "/invalid.txt"));
-  const passports: Passport[] = text
-    .split("\n")
-    .map((line) => line.trim())
-    .join("\n")
-    .split("\n\n")
-    .filter(Boolean)
-    .map((passport) =>
-      passport
-        .replace(/\n/g, " ")
-        .split(" ")
-        .map((field) => field.split(":"))
-        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
-    );
+  const passports: Passport[] = preprocess(text);
   const result = partTwo(passports);
   assertEquals(result, 0);
 });

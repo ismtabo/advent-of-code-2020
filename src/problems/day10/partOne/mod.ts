@@ -1,4 +1,4 @@
-export function partOne(ratings: number[]): number {
+export function partOne(ratings: number[]) {
   let jolt = 0;
   const sortedRatings = ratings.sort((a, b) => a - b);
   const oneDiffs: number[] = [];

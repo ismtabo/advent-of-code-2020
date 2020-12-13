@@ -1,9 +1,5 @@
 import { RE_BAG_RULE, SHYNI_GOLD } from "../partOne/mod.ts";
-
-interface Bag {
-  bag: string;
-  number: number;
-}
+import { Bag } from "./type.d.ts";
 
 export function partTwo(rules: string[]) {
   const childMap = rules.reduce(

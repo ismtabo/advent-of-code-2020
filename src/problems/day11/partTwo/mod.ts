@@ -1,4 +1,5 @@
-import { NEIGHBORS_DIRECTIONS, partOne } from "../partOne/mod.ts";
+import { partOne } from "../partOne/mod.ts";
+import { NEIGHBORS_DIRECTIONS } from "../utils.ts";
 
 export function getNeighborRayCast(
   map: string[][],

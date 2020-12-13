@@ -2,7 +2,7 @@ export const SHYNI_GOLD = "shiny gold";
 export const RE_BAG_RULE =
   /(\w+ \w+)\sbags\scontain\s(no other bags|(?:(?:\d+) (?:\w+ \w+) bags?)(?:,\s(?:\d+) (?:\w+ \w+) bags?)*)\./;
 
-export function partOne(rules: string[]): number {
+export function partOne(rules: string[]) {
   const parentsMap = rules.reduce((acc, rule) => {
     const match = rule.match(RE_BAG_RULE);
     const [_, parent, childrenList] = match ? match : [];

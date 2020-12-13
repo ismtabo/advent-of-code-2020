@@ -1,13 +1,4 @@
-interface Point {
-  north: number;
-  east: number;
-}
-
-type WayPoint = Point;
-
-interface State extends Point {
-  wayPoint: WayPoint;
-}
+import { Point, State } from "./type.d.ts";
 
 function rotate(point: Point, degrees: number, clockwise: boolean): Point {
   switch (true) {

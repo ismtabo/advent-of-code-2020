@@ -1,8 +1,9 @@
 import { partOne } from "./partOne/mod.ts";
 import { partTwo } from "./partTwo/mod.ts";
+import { Case } from "./types.d.ts";
 
-export function main(text: string, isPart2: boolean) {
-  const cases = text.split("\n").filter((line) =>
+export function preprocess(text: string): Case[] {
+  return text.split("\n").filter((line) =>
     /^(\d+)-(\d+)\s(\w): (\w+)$/.test(line)
   ).map(
     (line) => {
@@ -19,6 +20,10 @@ export function main(text: string, isPart2: boolean) {
       };
     },
   );
+}
+
+export function main(text: string, isPart2: boolean) {
+  const cases = preprocess(text);
   if (isPart2) {
     return partTwo(cases);
   }

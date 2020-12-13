@@ -1,4 +1,4 @@
-export interface Case {
+export interface Input {
   timestamp: number;
   buses: number[];
 }

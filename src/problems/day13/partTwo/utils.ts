@@ -1,3 +1,16 @@
+export function findMinTimestamp(buses: number[]) {
+  const firstBus = buses[0];
+  let currentTimestamp = 0;
+  while (
+    !buses.every((bus, index) =>
+      isNaN(bus) || ((currentTimestamp + index) % bus === 0)
+    )
+  ) {
+    currentTimestamp += firstBus;
+  }
+  return currentTimestamp;
+}
+
 function mod(n: number, m: number): number {
   return ((n % m) + m) % m;
 }

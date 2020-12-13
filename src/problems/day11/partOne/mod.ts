@@ -1,22 +1,7 @@
-interface GenerateNewStateOptions {
-  getNeighborFn?: (map: string[][], row: number, col: number) => string[];
-  minOccupiedNeighborSeats?: number;
-}
+import { NEIGHBORS_DIRECTIONS } from "../utils.ts";
+import { GenerateNewStateOptions, PartOneOptions } from "./types.d.ts";
 
-type PartOneOptions = GenerateNewStateOptions;
-
-export const NEIGHBORS_DIRECTIONS: number[][] = [
-  [-1, -1],
-  [-1, 0],
-  [-1, +1],
-  [0, -1],
-  [0, +1],
-  [+1, -1],
-  [+1, 0],
-  [+1, +1],
-];
-
-function getNeighbors(map: string[][], row: number, col: number): string[] {
+function getNeighbors(map: string[][], row: number, col: number) {
   return NEIGHBORS_DIRECTIONS.map(([dRow, dCol]) =>
     (map[row + dRow] || [])[col + dCol]
   )
@@ -34,7 +19,7 @@ function generateNewState(
     getNeighborFn = getNeighbors,
     minOccupiedNeighborSeats = 4,
   }: GenerateNewStateOptions,
-): string {
+) {
   if (cell === "L") {
     const emptyNeighbors = getNeighborFn(map, row, col).every((other) =>
       other === "L"
@@ -52,7 +37,7 @@ function generateNewState(
 
 function mapToString(
   map: string[][],
-): string {
+) {
   return map.flatMap((row) => row.join("")).join("\n");
 }
 

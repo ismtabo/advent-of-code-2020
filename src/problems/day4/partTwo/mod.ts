@@ -1,6 +1,7 @@
-import { Passport, validPassports } from "../partOne/mod.ts";
+import { validPassports } from "../utils.ts";
+import { Passport } from "../types.d.ts";
 
-export function validateField(field: string, value: string): boolean {
+export function validateField(field: string, value: string) {
   let year, height;
   // deno-lint-ignore prefer-const
   let unit: string;
@@ -52,7 +53,7 @@ export function validateField(field: string, value: string): boolean {
   }
 }
 
-export function partTwo(passports: Passport[]): number {
+export function partTwo(passports: Passport[]) {
   return validPassports(passports).filter((passport) =>
     Object.entries(passport).every(([field, value]) =>
       validateField(field, value)

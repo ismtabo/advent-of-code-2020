@@ -1,8 +1,9 @@
-import { partOne, Passport } from "./partOne/mod.ts";
+import { partOne } from "./partOne/mod.ts";
+import { Passport } from "./types.d.ts";
 import { partTwo } from "./partTwo/mod.ts";
 
-export function main(text: string, isPart2: boolean) {
-  const passports: Passport[] = text
+export function preprocess(text: string): Passport[] {
+  return text
     .split("\n")
     .map((line) => line.trim())
     .join("\n")
@@ -15,6 +16,10 @@ export function main(text: string, isPart2: boolean) {
         .map((field) => field.split(":"))
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
     );
+}
+
+export function main(text: string, isPart2: boolean) {
+  const passports = preprocess(text);
 
   if (isPart2) {
     return partTwo(passports);

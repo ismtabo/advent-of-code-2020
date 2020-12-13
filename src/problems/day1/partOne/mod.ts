@@ -1,4 +1,4 @@
-export function partOne(numbers: number[]): number {
+export function partOne(numbers: number[]) {
   const rightNumbers = numbers.map((number) =>
     numbers.filter((other) => number + other === 2020)
   );

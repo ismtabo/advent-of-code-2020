@@ -1,10 +1,6 @@
-const DIRECTIONS = ["E", "S", "W", "N"];
+import { State } from "./type.d.ts";
 
-interface State {
-  north: number;
-  east: number;
-  facing: number;
-}
+const DIRECTIONS = ["E", "S", "W", "N"];
 
 function mod(n: number, m: number): number {
   return ((n % m) + m) % m;

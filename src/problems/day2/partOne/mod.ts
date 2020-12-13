@@ -1,11 +1,4 @@
-export interface Case {
-  rule: {
-    min: number;
-    max: number;
-    letter: string;
-  };
-  password: string;
-}
+import { Case } from "../types.d.ts";
 
 export function partOne(cases: Case[]) {
   return cases.filter(({ rule: { min, max, letter }, password }) => {

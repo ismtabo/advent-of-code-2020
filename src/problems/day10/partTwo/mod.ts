@@ -1,22 +1,8 @@
-export function partTwo(ratings: number[]): number {
-  const maxRating = Math.max(...ratings) + 3;
-  const sortedRatings = [0].concat(ratings.sort((a, b) => a - b)).concat(
-    maxRating,
-  );
-  const branchesMap = new Map(
-    sortedRatings.map((
-      rating,
-      i,
-    ) => ([rating, branches(rating, i, sortedRatings)])),
-  );
-  return numberOfLeafs(0, branchesMap, new Map());
-}
-
 function branches(
   rating: number,
   index: number,
   ratings: number[],
-): number[] {
+) {
   const branches = ratings[index + 1] ? [ratings[index + 1]] : [];
   if (
     ratings[index + 2] &&
@@ -52,4 +38,18 @@ function numberOfLeafs(
   }
   cache.set(number, 1);
   return 1;
+}
+
+export function partTwo(ratings: number[]) {
+  const maxRating = Math.max(...ratings) + 3;
+  const sortedRatings = [0].concat(ratings.sort((a, b) => a - b)).concat(
+    maxRating,
+  );
+  const branchesMap = new Map(
+    sortedRatings.map((
+      rating,
+      i,
+    ) => ([rating, branches(rating, i, sortedRatings)])),
+  );
+  return numberOfLeafs(0, branchesMap, new Map());
 }
