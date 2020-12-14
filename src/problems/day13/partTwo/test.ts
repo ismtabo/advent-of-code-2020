@@ -37,13 +37,13 @@ Deno.test("Day 13 - part two - chinese remainder", () => {
     chineseRemainder(
       preprocessInput("17,x,13,19"),
     ),
-    3417n,
+    3417,
   );
-  assertEquals(chineseRemainder(preprocessInput("67,7,59,61")), 754018n);
-  assertEquals(chineseRemainder(preprocessInput("67,x,7,59,61")), 779210n);
-  assertEquals(chineseRemainder(preprocessInput("67,7,x,59,61")), 1261476n);
+  assertEquals(chineseRemainder(preprocessInput("67,7,59,61")), 754018);
+  assertEquals(chineseRemainder(preprocessInput("67,x,7,59,61")), 779210);
+  assertEquals(chineseRemainder(preprocessInput("67,7,x,59,61")), 1261476);
   assertEquals(
     chineseRemainder(preprocessInput("1789,37,47,1889")),
-    1202161486n,
+    1202161486,
   );
 });
