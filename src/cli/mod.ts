@@ -1,51 +1,23 @@
-import { parse } from "https://deno.land/std/flags/mod.ts";
-import { existsSync } from "https://deno.land/std/fs/mod.ts";
-import { dirname } from "https://deno.land/std/path/mod.ts";
+import { dirname, join } from "https://deno.land/std/path/mod.ts";
+import { ensureDir, exists } from "https://deno.land/std/fs/mod.ts";
+import { Command } from "https://deno.land/x/cliffy/command/mod.ts";
+import { CLIOptions } from "./types.d.ts";
+import { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
-
-async function main() {
-  const args = parse(
-    Deno.args,
-    { boolean: ["part1", "part2"], alias: { day: "d" } },
-  );
-  if (
-    args._.length !== 1 || !("day" in args) ||
-    (!["part1", "part2"].some((option) => option in args) &&
-      !["part1", "part2"].every((option) => option in args))
-  ) {
-    printUsage(1);
-  }
-
-  if (!existsSync(args._[0] as string)) {
-    console.error('Error - input file "{' + args._[0] + '}" does not exists');
-    Deno.exit(1);
-  }
-
-  const day = +args.day;
-  const module = await loadModule(day);
-  const text = Deno.readTextFileSync(args._[0] as string);
-
-  console.log(module.main(text, args.part2 && !args.part1));
-  Deno.exit(0);
-}
-
-function printUsage(exitCode: number) {
-  console.log(`\
-  Usage:
-  deno run --allow-read ${Deno.execPath()} [-d <day>] [--part1|--part2] inputFile
-  `);
-  Deno.exit(exitCode);
-}
 
 async function loadModule(day: number) {
   const dayModuleName = `day${day}`;
   const problems = await import(`${__dirname}/../problems/mod.ts`);
   if (!(dayModuleName in problems)) {
-    console.error(`Error - Day ${day} not found`);
+    console.error(`Day ${day} not found`);
     console.error(
       `Available days: ${
-        Object.keys(problems).join(", ").replaceAll("day", "")
+        Array.of(...Object.keys(problems))
+          .map((day) => day.match(/(?<=day)\d+/) || [])
+          .map(([day]) => +day)
+          .sort((a, b) => a - b)
+          .join(", ")
       }`,
     );
     Deno.exit(1);
@@ -53,4 +25,66 @@ async function loadModule(day: number) {
   return await problems[dayModuleName];
 }
 
-main();
+async function main({ day, part2, file }: CLIOptions) {
+  const module = await loadModule(day);
+  const text = Deno.readTextFileSync(file);
+  console.log(module.main(text, part2));
+  Deno.exit(0);
+}
+
+async function createDay(day: number) {
+  const mainFolder = join(__dirname, `../problems/day${day}`);
+
+  if (exists(mainFolder)) {
+    console.error(`Error - Day ${day} already exists`);
+    Deno.exit(1);
+  }
+
+  ensureDir(mainFolder);
+
+  Deno.writeTextFileSync(
+    join(mainFolder, "mod.ts"),
+    await renderFileToString(
+      join(__dirname, "templates/main-mod.template"),
+      {},
+    ),
+  );
+
+  for (const part of ["partOne", "partTwo"]) {
+    ensureDir(join(mainFolder, part));
+    Deno.writeTextFileSync(
+      join(mainFolder, part, "mod.ts"),
+      await renderFileToString(
+        join(__dirname, "templates/part-mod.template"),
+        { partName: part },
+      ),
+    );
+  }
+}
+
+try {
+  await new Command()
+    .name("aoc2020")
+    .version("0.1.0")
+    .description("Solutions for Advent of Code 2020. https://adventofcode.com/")
+    .command(
+      "run",
+      new Command()
+        .option("-d, --day <day:number:day>", "Day to run")
+        .option(
+          "--part2",
+          "Execute part 2 of the day",
+        )
+        .arguments("<file>")
+        .action(({ day, part2 }, file) => main({ day, part2, file })),
+    )
+    .command(
+      "create",
+      new Command()
+        .arguments("<day:number>")
+        .action((_, day) => createDay(day)),
+    )
+    .parse(Deno.args);
+} catch (error) {
+  console.error(error);
+}

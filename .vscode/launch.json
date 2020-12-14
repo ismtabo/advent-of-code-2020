@@ -18,6 +18,7 @@
         "--allow-all",
       ],
       "args": [
+        "run",
         "-d 14",
         "--part2",
         "src/problems/day14/sample_1.txt"
