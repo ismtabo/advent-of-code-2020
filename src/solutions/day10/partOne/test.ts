@@ -12,7 +12,7 @@ Deno.test("Day 10 - partOne - Ratings differences sample", () => {
   assertEquals(partOne(ratings), 35);
 });
 
-Deno.test("Day 10 - partOne - Ratings differences sample", () => {
+Deno.test("Day 10 - partOne - Ratings differences sample 1", () => {
   const text = Deno.readTextFileSync(join(__dirname, `../sample_1.txt`));
   const ratings = text.split("\n").map((line) => line.trim()).filter((line) =>
     line.length > 0

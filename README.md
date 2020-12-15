@@ -37,8 +37,9 @@ $ deno run -A --unstable src/cli/mod.ts -h
 
   Commands:
 
-    run     <file:string>  - Run day solution
-    create  <day:number>   - Create day solution folder skeleton
+    run      - Run day solution
+    run-all  - Run multiple day solution
+    new      - Create new day solution folder skeleton
 
 ```
 
@@ -49,7 +50,7 @@ The solutions can be run with the `run` sub-command:
 ```
 $ deno run -A --unstable src/cli/mod.ts run -h
 
-  Usage:   aoc2020 run <file>
+  Usage:   aoc2020 run
   Version: v0.1.0
 
   Description:
@@ -58,9 +59,35 @@ $ deno run -A --unstable src/cli/mod.ts run -h
 
   Options:
 
-    -h, --help                - Show this help.
-    -d, --day   <day:number>  - Day to run
-    --part2                   - Execute part 2 of the day
+    -h, --help                      - Show this help.
+    -d, --day        <day:number>   - Day to run
+    -p, --part       <part:number>  - Execute part 2 of the day                                    (Default: 1)
+    -a, --all-parts                 - Execute both parts. If present part option will be ignore.
+    -t, --time                      - Show spent time
+    -f, --file       <file:string>  - Input file. If missing, the day input file is used instead.
+    --sample                        - Run day using sample input instead of day input file.        (conflicts: file)
+
+```
+
+Also, to run all the solutions you can use `run-all` sub-command:
+
+```
+$ deno run -A --unstable src/cli/mod.ts run-all -h
+
+  Usage:   aoc2020 run-all
+  Version: v0.1.0
+
+  Description:
+
+    Run multiple day solution
+
+  Options:
+
+    -h, --help                      - Show this help.
+    -p, --part       <part:number>  - Execute part 2 of the day                                   (Default: 1)
+    -a, --all-parts                 - Execute both parts. If present part option will be ignore.
+    -t, --time                      - Show spent time
+    --sample                        - Run day using sample input instead of day input file.
 
 ```
 

@@ -3,7 +3,7 @@ import { partTwo } from "./partTwo/mod.ts";
 
 export function preprocess(text: string) {
   return text.split("\n")
-    .filter((line) => line.length > 0)
+    .filter((line) => line.trim().length > 0)
     .map((line) => parseInt(line));
 }
 

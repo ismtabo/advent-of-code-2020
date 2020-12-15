@@ -20,7 +20,7 @@
       "args": [
         "run",
         "-d 14",
-        "--part2",
+        "-p 2",
         "src/solutions/day14/sample_1.txt"
       ],
       "attachSimplePort": 9229,
