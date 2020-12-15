@@ -5,10 +5,12 @@ import { CLIOptions } from "./types.d.ts";
 import { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
+const SOLUTIONS_PATH = join(__dirname, "../solutions");
+const SOLUTIONS_MODULE = join(SOLUTIONS_PATH, "mod.ts");
 
 async function loadModule(day: number) {
   const dayModuleName = `day${day}`;
-  const problems = await import(`${__dirname}/../problems/mod.ts`);
+  const problems = await import(SOLUTIONS_MODULE);
   if (!(dayModuleName in problems)) {
     console.error(`Day ${day} not found`);
     console.error(
@@ -33,7 +35,7 @@ async function main({ day, part2, file }: CLIOptions) {
 }
 
 async function createDay(day: number) {
-  const mainFolder = join(__dirname, `../problems/day${day}`);
+  const mainFolder = join(SOLUTIONS_PATH, `day${day}`);
 
   if (await exists(mainFolder)) {
     console.error(`Error - Day ${day} already exists`);

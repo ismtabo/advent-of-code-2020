@@ -21,7 +21,7 @@
         "run",
         "-d 14",
         "--part2",
-        "src/problems/day14/sample_1.txt"
+        "src/solutions/day14/sample_1.txt"
       ],
       "attachSimplePort": 9229,
       "outputCapture": "std"
@@ -30,13 +30,14 @@
       "type": "pwa-node",
       "request": "launch",
       "name": "Launch Deno Test",
-      "program": "${workspaceFolder}/src/problems/day11/partTwo/test.ts",
+      "program": "${workspaceFolder}/src/solutions/day15/partOne/test.ts",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "deno",
       "runtimeArgs": [
         "test",
         "--inspect-brk=127.0.0.1:9229",
-        "--allow-all"
+        "--allow-all",
+        "--filter \"results\""
       ],
       "attachSimplePort": 9229
     },
