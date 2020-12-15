@@ -35,12 +35,12 @@ async function main({ day, part2, file }: CLIOptions) {
 async function createDay(day: number) {
   const mainFolder = join(__dirname, `../problems/day${day}`);
 
-  if (exists(mainFolder)) {
+  if (await exists(mainFolder)) {
     console.error(`Error - Day ${day} already exists`);
     Deno.exit(1);
   }
 
-  ensureDir(mainFolder);
+  await ensureDir(mainFolder);
 
   Deno.writeTextFileSync(
     join(mainFolder, "mod.ts"),
@@ -51,7 +51,7 @@ async function createDay(day: number) {
   );
 
   for (const part of ["partOne", "partTwo"]) {
-    ensureDir(join(mainFolder, part));
+    await ensureDir(join(mainFolder, part));
     Deno.writeTextFileSync(
       join(mainFolder, part, "mod.ts"),
       await renderFileToString(
@@ -70,6 +70,7 @@ try {
     .command(
       "run",
       new Command()
+        .description("Run day solution")
         .option("-d, --day <day:number:day>", "Day to run")
         .option(
           "--part2",
@@ -81,6 +82,7 @@ try {
     .command(
       "create",
       new Command()
+        .description("Create day solution folder skeleton")
         .arguments("<day:number>")
         .action((_, day) => createDay(day)),
     )
