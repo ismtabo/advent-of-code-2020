@@ -19,9 +19,9 @@
       ],
       "args": [
         "run",
-        "-d 14",
-        "-p 2",
-        "src/solutions/day14/sample_1.txt"
+        "-d 9",
+        "-p 1",
+        "--sample"
       ],
       "attachSimplePort": 9229,
       "outputCapture": "std"
