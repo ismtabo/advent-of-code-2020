@@ -59,13 +59,14 @@ $ deno run -A --unstable src/cli/mod.ts run -h
 
   Options:
 
-    -h, --help                      - Show this help.
-    -d, --day        <day:number>   - Day to run
-    -p, --part       <part:number>  - Part of the day solution to run.                              (Default: 1)
-    -a, --all-parts                 - Execute both parts. If present part option will be ignore.
-    -t, --time                      - Show spent time
-    -f, --file       <file:string>  - Input file. If missing, the day input file is used instead.
-    --sample                        - Run day using sample input instead of day input file.        (conflicts: file)
+    -h, --help                        - Show this help.
+    -d, --day        <day:number>     - Day to run
+    -p, --part       <part:number>    - Part of the day solution to run.                             (Default: 1)
+    -a, --all-parts                   - Execute both parts. If present part option will be ignore.
+    -t, --time                        - Show spent time
+    -f, --file       <file:string>    - Input file. If missing, the day input file is used instead.
+    --sample                          - Run day using sample input instead of day input file.        (conflicts: file)
+    --format         <format:string>  - Output format.                                               (Default: "plain")
 
 ```
 
@@ -83,11 +84,12 @@ $ deno run -A --unstable src/cli/mod.ts run-all -h
 
   Options:
 
-    -h, --help                      - Show this help.
-    -p, --part       <part:number>  - Part of the day solution to run.                             (Default: 1)
-    -a, --all-parts                 - Execute both parts. If present part option will be ignore.
-    -t, --time                      - Show spent time
-    --sample                        - Run day using sample input instead of day input file.
+    -h, --help                        - Show this help.
+    -p, --part       <part:number>    - Part of the day solution to run.                            (Default: 1)
+    -a, --all-parts                   - Execute both parts. If present part option will be ignore.
+    -t, --time                        - Show spent time
+    --sample                          - Run day using sample input instead of day input file.
+    --format         <format:string>  - Output format.                                              (Default: "plain")
 
 ```
 
