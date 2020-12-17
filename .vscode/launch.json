@@ -19,8 +19,8 @@
       ],
       "args": [
         "run",
-        "-d 9",
-        "-p 1",
+        "-d 17",
+        "-a",
         "--sample"
       ],
       "attachSimplePort": 9229,
