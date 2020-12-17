@@ -1,7 +1,7 @@
 import { ensureDirSync, exists } from "https://deno.land/std/fs/mod.ts";
 import { dirname, join } from "https://deno.land/std/path/mod.ts";
-import { listDays, SOLUTIONS_MODULE, SOLUTIONS_PATH } from "./load.ts";
 import { renderFileToString } from "https://deno.land/x/dejs@0.9.3/mod.ts";
+import { listDays, SOLUTIONS_MODULE, SOLUTIONS_PATH } from "./load.ts";
 
 const __dirname = dirname(new URL(import.meta.url).pathname);
 

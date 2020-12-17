@@ -7,6 +7,7 @@ try {
     .name("aoc2020")
     .version("0.1.0")
     .description("Solutions for Advent of Code 2020. https://adventofcode.com/")
+    .throwErrors()
     .command(
       "run",
       new Command()
