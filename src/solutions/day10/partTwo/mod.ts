@@ -42,9 +42,10 @@ function numberOfLeafs(
 
 export function partTwo(ratings: number[]) {
   const maxRating = Math.max(...ratings) + 3;
-  const sortedRatings = [0].concat(ratings.sort((a, b) => a - b)).concat(
-    maxRating,
-  );
+  const sortedRatings = [0].concat(ratings.slice().sort((a, b) => a - b))
+    .concat(
+      maxRating,
+    );
   const branchesMap = new Map(
     sortedRatings.map((
       rating,

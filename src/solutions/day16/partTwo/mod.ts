@@ -29,7 +29,7 @@ export function partTwo(input: Input) {
         !invalidIndexes.includes(index)
       ),
     }))
-    .sort(({ indexes: a }, { indexes: b }) => a.length - b.length);
+    .slice().sort(({ indexes: a }, { indexes: b }) => a.length - b.length);
 
   // Reduce the number of possible indexes for each field
   const fieldReverseMap = fieldsWithPossibleIndexEntries

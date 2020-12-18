@@ -1,6 +1,6 @@
 export function partOne(ratings: number[]) {
   let jolt = 0;
-  const sortedRatings = ratings.sort((a, b) => a - b);
+  const sortedRatings = ratings.slice().sort((a, b) => a - b);
   const oneDiffs: number[] = [];
   const threeDiffs: number[] = [];
 

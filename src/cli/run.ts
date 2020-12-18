@@ -52,15 +52,8 @@ function runAllParts(
   text: string,
   { sample, time }: Pick<RunOptions, "sample" | "time">,
 ): ResultDay {
-  const sampleExtraArgs = sample
-    ? module.config?.sampleExtraOptions
-    : undefined;
-  const partFn: (_: SolutionPart) => SolutionPart = sampleExtraArgs
-    ? (part: SolutionPart) => (input) => part(input, sampleExtraArgs)
-    : (part: SolutionPart) => part;
-  const input = module.preprocess(text);
-  const partOne = runPart(partFn(module.partOne), input, { time });
-  const partTwo = runPart(partFn(module.partTwo), input, { time });
+  const partOne = runModule(module, text, { part: 1, sample, time });
+  const partTwo = runModule(module, text, { part: 2, sample, time });
   return { partOne, partTwo };
 }
 
