@@ -30,14 +30,14 @@
       "type": "pwa-node",
       "request": "launch",
       "name": "Launch Deno Test",
-      "program": "${workspaceFolder}/src/solutions/day15/partOne/test.ts",
+      "program": "${workspaceFolder}/src/solutions/day18/partTwo/test.ts",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "deno",
       "runtimeArgs": [
         "test",
         "--inspect-brk=127.0.0.1:9229",
         "--allow-all",
-        "--filter \"results\""
+        // "--filter \"Day 18\""
       ],
       "attachSimplePort": 9229
     },
